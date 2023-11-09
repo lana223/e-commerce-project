@@ -1,7 +1,7 @@
 
    <template>
   <v-parallax
-    src="https://daoinsights.com/wp-content/uploads/2021/08/Sheinx_May_Finale_1228-scaled-1-1870x1247.jpeg"
+    src="https://png.pngtree.com/background/20230614/original/pngtree-ecommerce-website-with-shopping-cart-with-the-shopping-cart-on-a-picture-image_3515047.jpg"
     
   >
     <div class="d-flex flex-column fill-height justify-center align-center text-black">
