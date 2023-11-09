@@ -11,9 +11,8 @@ export const useCartStore = defineStore('cart', {
  
   actions: {
     addToCart(item) {
-      console.log(this.items)
+      console.log(item);
       this.items.push(item)
-      console.log( this.items.push(item))
       console.log("added cart");
       // localStorage.setItem('cartItems', JSON.stringify(items.value))
     },
