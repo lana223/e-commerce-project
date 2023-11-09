@@ -14,11 +14,7 @@ cart.items,
     <v-row>
       <v-col
        v-for="Card in Cards" 
-       key="Card.id"
-       cols="12"
-        sm="6"
-        lg="4"
-       
+       :key="Card.id"
        >
         <ProductItem :product="Product">
           <template #actions>
