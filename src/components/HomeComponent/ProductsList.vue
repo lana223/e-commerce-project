@@ -2,53 +2,40 @@
   <v-container>
     <h1 class="text-center">Products</h1>
     <v-row>
-      <product-item :product="Product"
-        v-for="Product in companiesloaded"
-        :key="Product.Id"
-        :img="Product.image"
+      <ProductItem
+        :list="list"
+        v-for="list in Productloaded()"
+        :key="list.Id"
+        :img="list.image"
       >
-      </product-item>
+      </ProductItem>
       <v-btn v-on:click="load()">Load More</v-btn>
     </v-row>
   </v-container>
 </template>
    
-   <script >
-import ProductItem from "./ProductItem.vue";
+   <script setup >
+import ProductItem from "@/components/HomeComponent/ProductItem.vue"
+import { useCartStore } from "@/store/app.js";
 
-export default {
-  components: {
-    ProductItem,
-  },
- 
-  data() {
-    return {
-      Products: [],
-      length: 6,
-    };
-  },
-  methods: {
-    load() {
-      if (this.length >= this.Products.length) {
-        return;
-      } else {
-        this.length = this.length + 3;
-      }
-    },
-  },
+import { ref } from "vue";
+const data = useCartStore();
+let length = ref(6);
+fetch("../../../json/product.json")
+  .then((res) => res.json())
+  .then((json) => (data.products = json));
+    let lists = data.products
+    console.log(lists)
+function load() {
+  if (length.value >= data.products.length) {
+    return;
+  } else {
+    length.value = length.value + 3;
+  }
+}
 
-  created() {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => (this.Products = json));
-  },
-  computed: {
-    companiesloaded() {
-      return this.Products.slice(0, this.length);
-    },
-  },
-
-};
-
+function Productloaded() {
+  return data.products.slice(0, length.value);
+}
 </script>
    

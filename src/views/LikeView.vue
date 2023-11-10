@@ -1,10 +1,10 @@
 <script setup>
 import ProductItem from "@/components/HomeComponent/ProductItem.vue";
-import { useCartStore } from "@/store/app";
+import { useLikeStore } from "@/store/Like";
 import { computed } from "vue";
-const cart = useCartStore();
+const Like= useLikeStore();
 const Cards = computed(() => 
-cart.items,
+Like.Like,
 );
 
 </script>
@@ -21,7 +21,7 @@ cart.items,
             <VBtn
               icon="mdi-delete"
               color="error"
-              @click="cart.removeFromCart(Card.id)"
+              @click="Like.removeFromCart(Card.id)"
             />
           </template>
         </ProductItem>

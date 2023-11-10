@@ -1,11 +1,13 @@
+
 <template>
+ 
   <v-col cols="4">
     <v-card class="text-center">
       <v-card-item>
         <v-img :src="img" width="200" height="200" class="mx-auto"> </v-img>
-        <v-card-title class="my-4">{{ product.title }}</v-card-title>
-        <v-card-subtitle>{{ product.description }}</v-card-subtitle>
-        <v-card-text>Price : {{ product.price }}</v-card-text>
+        <v-card-title class="my-4">{{ list.title }}</v-card-title>
+        <v-card-subtitle>{{ list.description }}</v-card-subtitle>
+        <v-card-text>Price : {{ list.price }}</v-card-text>
         <v-rating
           hover
           :length="5"
@@ -23,11 +25,16 @@
         </v-btn>
         <VBtn 
         icon="mdi-cart"
-        @click="cart.addToCart(item)"
+        @click="cart.addToCart(list)"
+        />
+        <VBtn 
+        icon="mdi-heart"
+        @click="Like.addToCart(list)"
         />
   
         <slot name="delete"/>
-        <VBtn icon="mdi-cards-heart" />
+        
+       
       
       </v-card-actions>
     </v-card>
@@ -37,13 +44,15 @@
 
 <script setup>
 import {useCartStore} from "@/store/app.js";
+import {useLikeStore} from "@/store/Like.js";
 
 defineProps({
   img: String,
-  product:{
-    type:Object,
-    required:true,
-  }
-})
+  list: {
+    type: Object,
+    required: true,
+  },
+});
 const cart = useCartStore()
+const Like = useLikeStore()
 </script>
