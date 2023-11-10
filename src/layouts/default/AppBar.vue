@@ -1,6 +1,7 @@
 <template>
 
         <v-app-bar class="px-16 " color="#EABF9F" >
+          <v-btn @click="toggleTheme()"><span class="mdi mdi-brightness-6"></span></v-btn>
           <v-app-bar-title> SHEIN </v-app-bar-title>
           <template v-slot:append>
             <v-btn><router-link  style="text-decoration:none;" to="/">Home</router-link></v-btn>
@@ -16,19 +17,33 @@
  
 </template>
 
-<script >
+<script  >
 import { useCartStore } from '@/store/app';
 import { useLikeStore} from '@/store/like';
+import { useTheme } from 'vuetify'
 export default {
   data(){
+    const theme = useTheme()
+
+function toggleTheme() {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+}
     return {
       cart :[],
       Like :[],
+      theme,
+      toggleTheme
     }
   },
+  
   created(){
     this.cart = useCartStore().items;
     this.Like= useLikeStore().Like;
-  }
+  },
+  
+
 }
+
+
+
 </script>
