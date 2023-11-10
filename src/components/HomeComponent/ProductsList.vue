@@ -21,7 +21,7 @@ import { useCartStore } from "@/store/app.js";
 import { ref } from "vue";
 const data = useCartStore();
 let length = ref(6);
-fetch("../../../json/product.json")
+fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
   .then((json) => (data.products = json));
     let lists = data.products
