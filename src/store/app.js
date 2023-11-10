@@ -13,7 +13,7 @@ export const useCartStore = defineStore('cart', {
  
   actions: {
     addToCart(item) {
-      
+      if (!this.items.find(cartItem => cartItem.id === item.id))
       this.items.push(item)
       
       console.log("added cart");
